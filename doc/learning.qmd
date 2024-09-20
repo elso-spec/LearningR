@@ -2,14 +2,16 @@
 title: "Reproducible documents"
 author: "Elisabeth Solmunde"
 format: html
+html:
+    theme: yeti
 editor: visual
 ---
 
-- Elisabeth Solmunde
-- Department of Clinical Epidemiology, Department of Clinical Medicine
-- Aarhus University and Aarhus University Hospital 
+-   Elisabeth Solmunde
+-   Department of Clinical Epidemiology, Department of Clinical Medicine
+-   Aarhus University and Aarhus University Hospital
 
-# Introduction 
+# Introduction
 
 The **aim** of this study is to investigate the *association* between...
 
@@ -17,7 +19,7 @@ The **aim** of this study is to investigate the *association* between...
 
 This study was set in **Denmark** using *nationwide* registers...
 
-## Analysis 
+## Analysis
 
 We presented **descriptive** characteristics according to *exposure status*...
 
@@ -25,9 +27,7 @@ We presented **descriptive** characteristics according to *exposure status*...
 
 In this **nationwide**, register-based study we found that *caffeine*...
 
-```{r}
-5*3
-```
+![Caffeine is a natural chemical with stimulant effect. It is for example found in coffee.](images/coffee.jpg){#fig-coffee width="75%" height="75%"}
 
+\`\`\`
 
-```
