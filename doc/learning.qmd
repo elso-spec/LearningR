@@ -35,6 +35,9 @@ In this **nationwide**, register-based study we found that *caffeine*...
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
+library(here)
+library(readr)
+nhanes_small <- read_csv(here("data", "nhanes_small.csv"))
 ```
 
 ### One variable plots
@@ -79,5 +82,22 @@ nhanes_small %>%
   ggplot(aes(x = education)) +
   geom_bar()
 ```
-
-\`\`\`
+### Plotting two variables
+```{r}
+nhanes_small %>%
+  ggplot(aes(x = bmi, y = bp_sys_ave)) +
+  geom_hex(na.rm = T) +
+  geom_smooth(na.rm = T)
+```
+```{r}
+nhanes_small %>%
+  filter(!is.na(education), !is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes, fill = education)) +
+  geom_bar(position = position_dodge())
+```
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes), bmi <= 60) %>%
+  ggplot(aes(x = diabetes, y = bmi)) +
+  geom_violin(na.rm = T)
+```
