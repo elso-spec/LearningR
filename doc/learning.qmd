@@ -189,11 +189,11 @@ nhanes_small %>%
 ```{r}
 # Barplot to work from, with two discrete variables
 
-nhanes_small %>% 
-    filter(!is.na(diabetes), !is.na(education)) %>% 
-    ggplot(aes(x = diabetes, fill = education)) +
-    geom_bar(position = position_dodge()) +
-    scale_fill_viridis_d(option = "cividis")
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  ggplot(aes(x = diabetes, fill = education)) +
+  geom_bar(position = position_dodge()) +
+  scale_fill_viridis_d(option = "cividis")
 ```
 ```{r}
 # Scatterplot to work from, with three continuous variables
@@ -202,4 +202,45 @@ nhanes_small %>%
   geom_point(na.rm = TRUE) +
   scale_colour_viridis_c(option = "inferno")
 ```
+## Changing plot apperance 
+```{r}
+base_scatterplot <- nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+  geom_point(na.rm = T) +
+  facet_grid(
+    rows = vars(diabetes),
+    cols = vars(education)
+  ) +
+  scale_color_viridis_c()
 
+base_scatterplot
+```
+```{r}
+base_scatterplot + theme_bw()
+```
+```{r}
+base_scatterplot + theme_minimal()
+```
+```{r}
+base_scatterplot + theme_classic()
+```
+```{r}
+theme_set(theme_bw())
+```
+```{r}
+base_scatterplot2 <- base_scatterplot +
+  labs(
+    title = "BMI, systolic blood pressure and age by diabetes and education",
+    y = "Systolic blood pressure (mmHg)",
+    x = "BMI (kg/m2)"
+  )
+base_scatterplot2
+```
+## Saving the plot
+```{r}
+ggsave(here::here("doc/images/scatterplot.pdf"),
+  base_scatterplot2,
+  width = 7, height = 5
+)
+```
