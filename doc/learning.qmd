@@ -149,3 +149,38 @@ nhanes_exercise %>%
   geom_hex(na.rm = TRUE) +
   geom_smooth()
 ```
+## Plotting three or more variables 
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  ggplot(aes(x = education, y = bp_sys_ave, colour = diabetes)) +
+  geom_boxplot(na.rm = T)
+```
+```{r}
+nhanes_small %>%
+  ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+  geom_point(na.rm = T)
+```
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  ggplot(aes(x = bmi, y = bp_sys_ave, colour = diabetes)) +
+  geom_point(na.rm = T)
+```
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  ggplot(aes(x = bmi, y = bp_sys_ave)) +
+  geom_point(na.rm = T) +
+  facet_grid(rows = vars(diabetes))
+```
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+  geom_point(na.rm = T) +
+  facet_grid(
+    rows = vars(diabetes),
+    cols = vars(education)
+  )
+```
